@@ -1,0 +1,765 @@
+::::::::::::::
+StackRA.java
+::::::::::::::
+/*
+ * Purpose: Data Structure and Algorithms Lab 5 Problem 1
+ * Status: Complete and thoroughly tested
+ * Last update: 02/27/19
+ * Submitted:  02/27/19
+ * Comment: Revised
+ * @author: Donald DeWitt
+ * @version: 2019.02.27
+ */
+
+public class StackRA<T> implements StackInterface<T>
+{
+    private T[] items;
+    private int numItems;
+
+    public StackRA()
+    {
+        items = (T[]) new Object[3];
+        numItems = 0;
+    }
+
+    public boolean isEmpty()
+    {
+        return numItems==0;
+    }
+
+    public void popAll()
+    {
+        items = (T[]) new Object[3];
+        numItems = 0;
+    }
+
+    public void push(T newItem) throws StackException
+    {
+        //Resize stack if stack is at capacity
+        if(numItems == items.length)
+        {
+            T[] newStack = (T[]) new Object[items.length + items.length];
+            for(int i = 0; i < numItems; i++)
+            {
+                newStack[i] = items[i];
+            }
+            items = newStack;
+        }
+        items[numItems++] = newItem;
+    }
+
+    public T pop() throws StackException
+    {
+        T result;
+        if(numItems == 0)
+        {
+            throw new StackException("Stack is empty");
+        }
+        else
+        {
+            result = items[numItems-1];
+            items[numItems-1] = null;
+        }
+        numItems--;
+        return result;
+    }
+
+    public T peek() throws StackException
+    {
+        T result;
+        if(numItems==0)
+        {
+            throw new StackException("Stack is empty");
+        }
+        else
+        {
+            result = items[numItems-1];
+        }
+        return result;
+    }
+
+    public String toString()
+    {
+        StringBuilder sb = new StringBuilder("");
+        for (int pos = numItems-1; pos > -1; pos--)
+        {
+            sb.append(items[pos] + " ");
+        }
+        return sb.toString();
+    }
+}
+::::::::::::::
+StackSLS.java
+::::::::::::::
+/*
+ * Purpose: Data Structure and Algorithms Lab 5 Problem 1
+ * Status: Complete and thoroughly tested
+ * Last update: 02/27/19
+ * Submitted:  02/27/19
+ * Comment: Revised
+ * @author: Donald DeWitt
+ * @version: 2019.02.27
+ */
+
+public class StackSLS<T> implements StackInterface<T>
+{
+    private Node<T> head;
+
+    public StackSLS()
+    {
+        head = null;
+    }
+
+    public String toString()
+    {
+        StringBuilder sb = new StringBuilder("");
+        if(head != null)
+        {
+            for(Node<T> curr = head; curr != null; curr = curr.getNext())
+            {
+                sb.append(curr.getItem() + " ");
+            }
+        }
+        String s = sb.toString();
+        return s;
+    }
+
+    public boolean isEmpty()
+    {
+        return head == null;
+    }
+
+    public void popAll()
+    {
+        head = null;
+    }
+
+    public void push(T newItem) throws StackException
+    {
+        head = new Node<T>(newItem,head);
+    }
+
+    public T pop() throws StackException
+    {
+        T result;
+        if(head == null)
+        {
+            throw new StackException("Stack is empty");
+        }
+        else
+        {
+            result = (T)head.getItem();
+            head = head.getNext();
+        }
+        return result;
+    }
+
+    public T peek() throws StackException
+    {
+        T result;
+        if(head == null)
+        {
+            throw new StackException("Stack is empty");
+        }
+        else
+        {
+            result = (T)head.getItem();
+        }
+        return result;
+    }
+}
+::::::::::::::
+P1Driver.java
+::::::::::::::
+/*
+ * Purpose: Data Structure and Algorithms Lab 5 Problem 1
+ * Status: Complete and thoroughly tested
+ * Last update: 02/27/19
+ * Submitted:  02/27/19
+ * Comment: Revised
+ * @author: Donald DeWitt
+ * @version: 2019.02.25
+ */
+
+import java.io.*;
+
+public class P1Driver
+{
+    public static void main(String args[]) throws IOException
+    {
+        StackSLS<Object> stack = new StackSLS<Object>(); //Creates a stack with no items
+        int i = 0; //Integer for controlling the menu
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        System.out.println("1. Push item onto stack.\n"
+                           + "2. Pop item from stack.\n"
+                           + "3. Display top item from stack.\n"
+                           + "4. Display items in stack.\n"
+                           + "5. Clear stack.\n"
+                           + "6. Exit.\n");
+
+        while(i != 6)
+        {
+            System.out.println("Select an option: ");
+            i = Integer.parseInt(br.readLine().trim());
+            System.out.println(i);
+
+            switch(i)
+            {
+            case 1:
+                System.out.println("\t" + "Pushing item onto stack...");
+                System.out.println("\t" + "Enter the item to push onto the stack:");
+                Object item = br.readLine().trim();
+                System.out.println(item);
+                stack.push(item);
+                break;
+
+            case 2:
+                if(!(stack.isEmpty()))
+                {
+                    System.out.println("\t" + "Item '" + stack.pop() + "' was popped from the stack.");
+                }
+                else
+                {
+                    System.out.println("\t" + "stack is empty.");
+                }
+                break;
+
+            case 3:
+                if(!(stack.isEmpty()))
+                {
+                    System.out.println("\t" + "Item at the top of the stack: " + stack.peek().toString());
+
+                }
+                else
+                {
+                    System.out.println("\t" + "stack is empty.");
+                }
+                break;
+
+            case 4:
+                if(!(stack.isEmpty()))
+                {
+                    System.out.println(stack.toString());
+                }
+                else
+                {
+                    System.out.println("\t" + "stack is empty.");
+                }
+                break;
+
+            case 5:
+                if(!(stack.isEmpty()))
+                {
+                    stack = new StackSLS<Object>();
+                }
+                else
+                {
+                    System.out.println("\t" + "stack is empty.");
+                }
+                break;
+
+            case 6:
+                System.out.println("\t" + "Exiting program...");
+                break;
+
+            default:
+                System.out.println("\t" + "Please select a valid option 1-6.");
+                break;
+            }//end switch
+        }//end while
+    }//end main()
+}
+::::::::::::::
+P1output.output
+::::::::::::::
+1. Push item onto stack.
+2. Pop item from stack.
+3. Display top item from stack.
+4. Display items in stack.
+5. Clear stack.
+6. Exit.
+
+Select an option: 
+5
+	stack is empty.
+Select an option: 
+4
+	stack is empty.
+Select an option: 
+3
+	stack is empty.
+Select an option: 
+2
+	stack is empty.
+Select an option: 
+1
+	Pushing item onto stack...
+	Enter the item to push onto the stack:
+D
+Select an option: 
+4
+D 
+Select an option: 
+3
+	Item at the top of the stack: D
+Select an option: 
+2
+	Item 'D' was popped from the stack.
+Select an option: 
+3
+	stack is empty.
+Select an option: 
+1
+	Pushing item onto stack...
+	Enter the item to push onto the stack:
+D
+Select an option: 
+1
+	Pushing item onto stack...
+	Enter the item to push onto the stack:
+C
+Select an option: 
+1
+	Pushing item onto stack...
+	Enter the item to push onto the stack:
+B
+Select an option: 
+1
+	Pushing item onto stack...
+	Enter the item to push onto the stack:
+A
+Select an option: 
+3
+	Item at the top of the stack: A
+Select an option: 
+4
+A B C D 
+Select an option: 
+2
+	Item 'A' was popped from the stack.
+Select an option: 
+3
+	Item at the top of the stack: B
+Select an option: 
+4
+B C D 
+Select an option: 
+5
+Select an option: 
+4
+	stack is empty.
+Select an option: 
+6
+	Exiting program...
+::::::::::::::
+P2Driver.java
+::::::::::::::
+/*
+ * Purpose: Data Structure and Algorithms Lab 5 Problem 2
+ * Status: Complete and thoroughly tested
+ * Last update: 02/27/19
+ * Submitted:  02/27/19
+ * Comment: Revised
+ * @author: Donald DeWitt
+ * @version: 2019.02.27
+ */
+
+import java.io.*;
+
+public class P2Driver
+{
+    public static void main(String args[]) throws IOException
+    {
+        Bag<Package> deliveryBag = new Bag<Package>();
+        Bag<Item> sampleBag = new Bag<Item>();
+        int i = -1; //Integer for controlling the menu
+        //Object item;
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        System.out.println("0. Exit.\n"
+                           + "1. Pick up an order.\n"
+                           + "2. Drop off an order.\n"
+                           + "3. Display number of packages and weight of bag.\n"
+                           + "4. Display number of items and weight of the bag of samples.\n"
+                           + "5. Enjoy an item from the bag of samples.\n"
+                           + "6. Enjoy all the samples in the bag of samples.");
+
+        while(i != 0)
+        {
+            System.out.println("Select an option: ");
+            i = Integer.parseInt(br.readLine().trim());
+            System.out.println(i);
+
+            switch(i)
+            {
+            case 0:
+                System.out.println("Exiting...");
+                break;
+            case 1:
+                System.out.println("Please specify package info:");
+                System.out.println("item name:");
+                String name = br.readLine().trim();
+                System.out.println(name);
+
+                System.out.println("item weight:");
+                Double weight = Double.parseDouble(br.readLine().trim());
+                System.out.println(weight);
+
+                System.out.println("number of items:");
+                int numItems = Integer.parseInt(br.readLine().trim());
+                System.out.println(numItems);
+
+                System.out.println("sender:");
+                String sender = br.readLine().trim();
+                System.out.println(sender);
+
+                System.out.println("recepient:");
+                String recepient = br.readLine().trim();
+                System.out.println(recepient);
+
+                deliveryBag.addItem(new Package(name, weight, sender, recepient, numItems));
+                System.out.println("A package of " + name + " each weighing " + weight + " lbs are now in the bag.");
+                break;
+
+            case 2:
+                if(deliveryBag.isEmpty())
+                {
+                    System.out.println("No deliveries to process!");
+                }
+                else
+                {
+                    Package curr = (Package)deliveryBag.removeItem();
+                    System.out.println("Here is your package " + curr.getRecepient() + ". May I please, please keep a sample(Y/N)?");
+                    String ans = br.readLine().trim().toUpperCase();//Y/N answer
+
+                    System.out.println("Your package contains: " + curr.getNumItems() + " "
+                                       + curr.getName() + "s each weighing " + curr.getWeight() + " from " + curr.getSender() +" to " + curr.getRecepient());
+
+                    if(ans.equals("Y"))
+                    {
+                        sampleBag.addItem(new Item(curr.getName(), curr.getWeight()));
+                        System.out.println("Thank you for letting me keep a " + curr.getName() +"!");
+                    }
+                    else
+                    {
+                        System.out.println("Thanks anyway.");
+                    }
+                }
+                break;
+
+            case 3:
+                System.out.println("Bag has " + deliveryBag.getSize()
+                                   + " packages and weighs " + deliveryBag.getTotalWeight() + " lbs.");
+                break;
+
+            case 4:
+                System.out.println("Bag has " + sampleBag.getSize()
+                                   + " packages and weighs " + sampleBag.getTotalWeight() + " lbs.");
+                break;
+
+            case 5:
+                if(sampleBag.isEmpty())
+                {
+                    System.out.println("No samples to enjoy!");
+                }
+                else
+                {
+                    Item curr = sampleBag.removeItem();
+                    System.out.println("This " + curr.getName() + " is amazing!"
+                                       + " I love free stuff!");
+                }
+                break;
+
+            case 6:
+                if(sampleBag.isEmpty())
+                {
+                    System.out.println("Sample bag is already empty.");
+                }
+                else
+                {
+                    sampleBag = new Bag<Item>();
+                    System.out.println("Sample bag has been emptied.");
+                }
+                break;
+
+            default:
+                break;
+            }//end switch(i)
+        }//end while(i !=6)
+    }//end main()
+}//end class
+::::::::::::::
+Bag.java
+::::::::::::::
+/*
+ * Purpose: Data Structure and Algorithms Lab 5 Problem 2
+ * Status: Complete and thoroughly tested
+ * Last update: 02/27/19
+ * Submitted:  02/27/19
+ * Comment: Revised
+ * @author: Donald DeWitt
+ * @version: 2019.07.25
+ */
+public class Bag<T>
+{
+    private StackSLS<T> items;
+    private double totalWeight;
+    private int size;
+
+    public Bag()
+    {
+        items = new StackSLS<T>();
+        totalWeight = 0;
+        size = 0;
+    }
+
+    public boolean isEmpty()
+    {
+        return items.isEmpty();
+    }
+
+    public int getSize()
+    {
+        return size;
+    }
+
+    public double getTotalWeight()
+    {
+        return totalWeight;
+    }
+
+    public void addItem(Item item)
+    {
+        if(item instanceof Package)
+        {
+            Package pItem = (Package)item;
+            totalWeight += (pItem.getWeight() * pItem.getNumItems());
+        }
+        else
+        {
+            totalWeight += item.getWeight();
+        }
+        items.push((T)item);
+        size++;
+    }
+
+    public Item removeItem()
+    {
+        Item item = (Item)items.pop();
+        if(item instanceof Package)
+        {
+            Package pItem = (Package)item;
+            totalWeight -= (pItem.getWeight() * pItem.getNumItems());
+        }
+        else
+        {
+            totalWeight += item.getWeight();
+        }
+        size--;
+        return item;
+    }
+}//end class
+::::::::::::::
+P2output.output
+::::::::::::::
+0. Exit.
+1. Pick up an order.
+2. Drop off an order.
+3. Display number of packages and weight of bag.
+4. Display number of items and weight of the bag of samples.
+5. Enjoy an item from the bag of samples.
+6. Enjoy all the samples in the bag of samples.
+Select an option: 
+3
+Bag has 0 packages and weighs 0.0 lbs.
+Select an option: 
+4
+Bag has 0 packages and weighs 0.0 lbs.
+Select an option: 
+5
+No samples to enjoy!
+Select an option: 
+6
+Sample bag is already empty.
+Select an option: 
+2
+No deliveries to process!
+Select an option: 
+1
+Please specify package info:
+item name:
+apple
+item weight:
+0.6
+number of items:
+10
+sender:
+Pickachu
+recepient:
+Mew
+A package of apple each weighing 0.6 lbs are now in the bag.
+Select an option: 
+3
+Bag has 1 packages and weighs 6.0 lbs.
+Select an option: 
+4
+Bag has 0 packages and weighs 0.0 lbs.
+Select an option: 
+1
+Please specify package info:
+item name:
+orange
+item weight:
+0.85
+number of items:
+14
+sender:
+Bulbasaur
+recepient:
+Abra
+A package of orange each weighing 0.85 lbs are now in the bag.
+Select an option: 
+1
+Please specify package info:
+item name:
+pear
+item weight:
+0.9
+number of items:
+7
+sender:
+Abra
+recepient:
+Kadabra
+A package of pear each weighing 0.9 lbs are now in the bag.
+Select an option: 
+3
+Bag has 3 packages and weighs 24.2 lbs.
+Select an option: 
+4
+Bag has 0 packages and weighs 0.0 lbs.
+Select an option: 
+2
+Here is your package Kadabra. May I please, please keep a sample(Y/N)?
+Your package contains: 7 pears each weighing 0.9 from Abra to Kadabra
+Thank you for letting me keep a pear!
+Select an option: 
+4
+Bag has 1 packages and weighs 0.9 lbs.
+Select an option: 
+3
+Bag has 2 packages and weighs 17.9 lbs.
+Select an option: 
+1
+Please specify package info:
+item name:
+cookie
+item weight:
+0.1
+number of items:
+50
+sender:
+Charizard
+recepient:
+Squirtle
+A package of cookie each weighing 0.1 lbs are now in the bag.
+Select an option: 
+1
+Please specify package info:
+item name:
+banana
+item weight:
+0.5
+number of items:
+22
+sender:
+Clefairy
+recepient:
+Vulpix
+A package of banana each weighing 0.5 lbs are now in the bag.
+Select an option: 
+4
+Bag has 1 packages and weighs 0.9 lbs.
+Select an option: 
+3
+Bag has 4 packages and weighs 33.9 lbs.
+Select an option: 
+2
+Here is your package Vulpix. May I please, please keep a sample(Y/N)?
+Your package contains: 22 bananas each weighing 0.5 from Clefairy to Vulpix
+Thanks anyway.
+Select an option: 
+4
+Bag has 1 packages and weighs 0.9 lbs.
+Select an option: 
+3
+Bag has 3 packages and weighs 22.9 lbs.
+Select an option: 
+2
+Here is your package Squirtle. May I please, please keep a sample(Y/N)?
+Your package contains: 50 cookies each weighing 0.1 from Charizard to Squirtle
+Thank you for letting me keep a cookie!
+Select an option: 
+4
+Bag has 2 packages and weighs 1.0 lbs.
+Select an option: 
+3
+Bag has 2 packages and weighs 17.9 lbs.
+Select an option: 
+5
+This cookie is amazing! I love free stuff!
+Select an option: 
+3
+Bag has 2 packages and weighs 17.9 lbs.
+Select an option: 
+4
+Bag has 1 packages and weighs 1.1 lbs.
+Select an option: 
+6
+Sample bag has been emptied.
+Select an option: 
+1
+Please specify package info:
+item name:
+granola
+item weight:
+0.5
+number of items:
+25
+sender:
+Jigglypuff
+recepient:
+Meowth
+A package of granola each weighing 0.5 lbs are now in the bag.
+Select an option: 
+1
+Please specify package info:
+item name:
+watermellon
+item weight:
+3.7
+number of items:
+3
+sender:
+Slowpoke
+recepient:
+Slowbro
+A package of watermellon each weighing 3.7 lbs are now in the bag.
+Select an option: 
+2
+Here is your package Slowbro. May I please, please keep a sample(Y/N)?
+Your package contains: 3 watermellons each weighing 3.7 from Slowpoke to Slowbro
+Thank you for letting me keep a watermellon!
+Select an option: 
+3
+Bag has 3 packages and weighs 30.4 lbs.
+Select an option: 
+4
+Bag has 1 packages and weighs 3.7 lbs.
+Select an option: 
+5
+This watermellon is amazing! I love free stuff!
+Select an option: 
+0
+Exiting...

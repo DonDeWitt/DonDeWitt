@@ -1,0 +1,79 @@
+1. Push item onto stack.
+2. Pop item from stack.
+3. Display top item from stack.
+4. Display items in stack.
+5. Clear stack.
+6. Exit.
+
+Select an option: 
+5
+	stack is empty.
+Select an option: 
+4
+	stack is empty.
+Select an option: 
+3
+	stack is empty.
+Select an option: 
+2
+	stack is empty.
+Select an option: 
+1
+	Pushing item onto stack...
+	Enter the item to push onto the stack:
+D
+Select an option: 
+4
+D 
+Select an option: 
+3
+	Item at the top of the stack: D
+Select an option: 
+2
+	Item 'D' was popped from the stack.
+Select an option: 
+3
+	stack is empty.
+Select an option: 
+1
+	Pushing item onto stack...
+	Enter the item to push onto the stack:
+D
+Select an option: 
+1
+	Pushing item onto stack...
+	Enter the item to push onto the stack:
+C
+Select an option: 
+1
+	Pushing item onto stack...
+	Enter the item to push onto the stack:
+B
+Select an option: 
+1
+	Pushing item onto stack...
+	Enter the item to push onto the stack:
+A
+Select an option: 
+3
+	Item at the top of the stack: A
+Select an option: 
+4
+A B C D 
+Select an option: 
+2
+	Item 'A' was popped from the stack.
+Select an option: 
+3
+	Item at the top of the stack: B
+Select an option: 
+4
+B C D 
+Select an option: 
+5
+Select an option: 
+4
+	stack is empty.
+Select an option: 
+6
+	Exiting program...

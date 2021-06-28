@@ -1,0 +1,200 @@
+0. Exit.
+1. Pick up an order.
+2. Drop off an order.
+3. Display number of packages and weight of bag.
+4. Display number of items and weight of the bag of samples.
+5. Enjoy an item from the bag of samples.
+6. Enjoy all the samples in the bag of samples.
+Select an option: 
+3
+Bag has 0 packages and weighs 0.0 lbs.
+Select an option: 
+4
+Bag has 0 packages and weighs 0.0 lbs.
+Select an option: 
+5
+No samples to enjoy!
+Select an option: 
+6
+Sample bag is already empty.
+Select an option: 
+2
+No deliveries to process!
+Select an option: 
+1
+Please specify package info:
+item name:
+apple
+item weight:
+0.6
+number of items:
+10
+sender:
+Pickachu
+recepient:
+Mew
+A package of apple each weighing 0.6 lbs are now in the bag.
+Select an option: 
+3
+Bag has 1 packages and weighs 6.0 lbs.
+Select an option: 
+4
+Bag has 0 packages and weighs 0.0 lbs.
+Select an option: 
+1
+Please specify package info:
+item name:
+orange
+item weight:
+0.85
+number of items:
+14
+sender:
+Bulbasaur
+recepient:
+Abra
+A package of orange each weighing 0.85 lbs are now in the bag.
+Select an option: 
+1
+Please specify package info:
+item name:
+pear
+item weight:
+0.9
+number of items:
+7
+sender:
+Abra
+recepient:
+Kadabra
+A package of pear each weighing 0.9 lbs are now in the bag.
+Select an option: 
+3
+Bag has 3 packages and weighs 24.2 lbs.
+Select an option: 
+4
+Bag has 0 packages and weighs 0.0 lbs.
+Select an option: 
+2
+Here is your package Kadabra. May I please, please keep a sample(Y/N)?
+Your package contains: 7 pears each weighing 0.9 from Abra to Kadabra
+Thank you for letting me keep a pear!
+Select an option: 
+4
+Bag has 1 packages and weighs 0.9 lbs.
+Select an option: 
+3
+Bag has 2 packages and weighs 17.9 lbs.
+Select an option: 
+1
+Please specify package info:
+item name:
+cookie
+item weight:
+0.1
+number of items:
+50
+sender:
+Charizard
+recepient:
+Squirtle
+A package of cookie each weighing 0.1 lbs are now in the bag.
+Select an option: 
+1
+Please specify package info:
+item name:
+banana
+item weight:
+0.5
+number of items:
+22
+sender:
+Clefairy
+recepient:
+Vulpix
+A package of banana each weighing 0.5 lbs are now in the bag.
+Select an option: 
+4
+Bag has 1 packages and weighs 0.9 lbs.
+Select an option: 
+3
+Bag has 4 packages and weighs 33.9 lbs.
+Select an option: 
+2
+Here is your package Vulpix. May I please, please keep a sample(Y/N)?
+Your package contains: 22 bananas each weighing 0.5 from Clefairy to Vulpix
+Thanks anyway.
+Select an option: 
+4
+Bag has 1 packages and weighs 0.9 lbs.
+Select an option: 
+3
+Bag has 3 packages and weighs 22.9 lbs.
+Select an option: 
+2
+Here is your package Squirtle. May I please, please keep a sample(Y/N)?
+Your package contains: 50 cookies each weighing 0.1 from Charizard to Squirtle
+Thank you for letting me keep a cookie!
+Select an option: 
+4
+Bag has 2 packages and weighs 1.0 lbs.
+Select an option: 
+3
+Bag has 2 packages and weighs 17.9 lbs.
+Select an option: 
+5
+This cookie is amazing! I love free stuff!
+Select an option: 
+3
+Bag has 2 packages and weighs 17.9 lbs.
+Select an option: 
+4
+Bag has 1 packages and weighs 1.1 lbs.
+Select an option: 
+6
+Sample bag has been emptied.
+Select an option: 
+1
+Please specify package info:
+item name:
+granola
+item weight:
+0.5
+number of items:
+25
+sender:
+Jigglypuff
+recepient:
+Meowth
+A package of granola each weighing 0.5 lbs are now in the bag.
+Select an option: 
+1
+Please specify package info:
+item name:
+watermellon
+item weight:
+3.7
+number of items:
+3
+sender:
+Slowpoke
+recepient:
+Slowbro
+A package of watermellon each weighing 3.7 lbs are now in the bag.
+Select an option: 
+2
+Here is your package Slowbro. May I please, please keep a sample(Y/N)?
+Your package contains: 3 watermellons each weighing 3.7 from Slowpoke to Slowbro
+Thank you for letting me keep a watermellon!
+Select an option: 
+3
+Bag has 3 packages and weighs 30.4 lbs.
+Select an option: 
+4
+Bag has 1 packages and weighs 3.7 lbs.
+Select an option: 
+5
+This watermellon is amazing! I love free stuff!
+Select an option: 
+0
+Exiting...
