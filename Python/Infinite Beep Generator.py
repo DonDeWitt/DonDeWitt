@@ -6,11 +6,11 @@ from random import *
 
 print("Infinite Beep Generator \nBy Donald DeWitt\n")
 
-#CorrectInput is a boolean value to determine if the user entered correct input
-correctInput = False;
+#endLoop is a boolean value to determine if the current loop should break
+endLoop = False
 
 #Loop for getting the length of each beep and validating user input
-while(not correctInput):
+while(not endLoop):
     ms = input("How long do you want each beep to sound in milliseconds? (1000 milliseconds = 1 second): ")
     #Exception handler in case the user enters a character or string
     try:
@@ -20,7 +20,7 @@ while(not correctInput):
         ms = -1
     #Check if ms is larger than 1, so that we have an integer that will work
     if(ms > 0):
-        correctInput = True
+        endLoop = True
     else:
         print("Invalid input. Please enter a whole number integer greater than 0.")
 
@@ -33,53 +33,40 @@ keys =  {
         'pentatonic' :[277, 311, 370, 415, 466, 554, 622, 740],
         'random'     :[0]
         }
+#List of available keys for dynamically informing user of available keys
+listkeys = list(keys.keys())
+#List of keys chosen by the user
+chosenkeys = []
+
+#Function for printing
+def iterate(x):
+    for i in x:
+        print(i)
 
 #Loop for getting the key 1 of each beep and validating user input
-correctInput = False
-while(not correctInput):
-    print("Please choose from the following keys:\n\tRandom \n\tA \n\tB \n\tC \n\tE \n\tBlack Keys")
-    key = input("In what key do you want the beeps to be? ").lower()
+endLoop = False
+while(not endLoop):
+    #Prompt the user to select a key. Inform the user what keys are available
+    if(len(chosenkeys) == 0):
+        print("Please choose from the following keys:")
+        iterate(chosenkeys)
+        key = input("In what key do you want the beeps to be? ").lower()
+    else:
+        key = input("Would you like the beeps to be in any additional keys? If yes, enter the the key name. Otherwise, enter [n]o? ").lower()
+
+    #Add the entered key into chosenkeys[], end the loop if user enters [n]o, or prompt the user if the input is invalid
     if(key in keys):
-       correctInput = True
+       chosenkeys.append(key)
+    elif((len(chosenkeys) > 0)and(key == 'n' or key == 'no')):
+        endLoop = True
     else:
         print("Invalid input. Please enter one of the listed keys.")
 
-correctInput = False
-key2 = ' '
-key3 = ' '
-    
-other1 = input("Would you like the beeps to be in any additional keys? [Y]es or [N]o? ").lower()
-
-#Loop for getting the key 2 of each beep and validating user input
-if ((other1 == 'y') | (other1 == 'yes')):
-    other1 = 'y'
-    while(not correctInput):
-        key2 = input("In what other key do you want the beeps to be?").lower()
-        if(key2 in keys):
-            correctInput = True
-        else:
-            print("Invalid input. Please enter one of the listed keys.")
-
-correctInput = False
-if(other1 == 'y'):
-    other2 = input("Would you like the beeps to be in one more key? [Y]es or [N]o? ").lower()
-    if ((other2 == 'y') | (other2 == 'yes')):
-        while(not correctInput):
-            key3 = input("In what other key do you want the beeps to be?").lower()
-            if(key3 in key):
-                correctInput = True
-            else:
-                print("Invalid input. Please enter one of the listed keys.")
-else:
-    other2 = 'n'
-
 #Displays the information the user entered
-readyinput = input("Your beeps will be " + str(ms) +
-                   " milliseconds long and will be in the key(s) of" + "\n" +
-                   key + "\n" +
-                   key2 + "\n" +
-                   key3 + "\n" +
-                   "Press enter to recieve your beeps.")
+print("Your beeps will be " + str(ms) + " milliseconds long and will be in the key(s) of")
+iterate(chosenkeys)
+
+enter = input("Press enter to recieve your beeps.")
 
 #Let the user know the beeps will commence now
 print("\n" + "Beeping...")
@@ -96,20 +83,11 @@ def keyBeep(key, ms):
 
 #Recursive function for making an infinite series of beeps using user input
 def playSound():
-    if key == 'random':
-        randomBeep()
-    else:
-        keyBeep(key, ms)
-    if (other1 == 'y'):
-        if(key2=='random'):
-           randomBeep()
+    for i in chosenkeys:
+        if(i == 'random'):
+            randomBeep()
         else:
-            keyBeep(key2, ms)
-        if (other2 == 'y'):
-            if(key3=='random'):
-                randomBeep()
-            else:
-                keyBeep(key3, ms)
+            keyBeep(i, ms)
     playSound()
 
 #Start beeping
