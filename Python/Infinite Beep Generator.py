@@ -1,5 +1,5 @@
-#Beep keys is a program exploring generative synthesis using the winsound.beep function available in Python on Windows machines.
-#The user can select a length for beeps and up to 3 different keys.
+#Infinite Beep Generator is a program exploring generative synthesis using the winsound.beep function available in Python on Windows machines.
+#The user can select a length for beeps and any amount of keys.
 #Program by Donald DeWitt
 import winsound
 from random import *
