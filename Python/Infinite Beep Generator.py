@@ -1,35 +1,39 @@
-#Infinite Beep Generator is a program exploring generative synthesis using the winsound.beep function available in Python on Windows machines.
-#The user can select a length for beeps and any amount of musical keys.
-#Program by Donald DeWitt
+'''Infinite Beep Generator is a program exploring generative synthesis using the winsound.beep function available in Python on Windows machines.
+The user can select a length for beeps and any amount of musical keys.
+Program by Donald DeWitt'''
 import winsound
 from random import *
 
-#Function for making a beep with a random frequency
+
 def randomBeep(ms):
+    "Function for making a beep with a random frequency"
     p=randint(200,800)
     winsound.Beep(int(p),int(ms))
-
-#Function for making a beep within a specified musical key
+    
 def keyBeep(keys, key, ms):
+    "Function for making a beep within a specified musical key"
     r = randint(0,7)
     winsound.Beep(keys[key][r],int(ms))
 
-#Iterative function for making an infinite series of beeps using user input
+
 def playSound(chosenkeys, keys, ms):
-    #Condition is always true, as the program is an INFINITE beep generator
+    "Iterative function for making an infinite series of beeps using user input"
     while(True):
+        #Condition is always true, as the program is an INFINITE beep generator
         for key in chosenkeys:
             if(key == 'random'):
                 randomBeep(ms)
             else:
                 keyBeep(keys, key, ms)
 
-#Function for printing dictionary keys (to avoid unnesecary code duplication)
+
 def iterate(x):
+    "Function for printing dictionary keys (to avoid unnesecary code duplication)"
     for i in x:
         print(i)
 
 def main():
+    "Main method"
     print("Infinite Beep Generator \nBy Donald DeWitt\n")
 
     #endLoop is a boolean value to determine if the current loop should break
@@ -62,7 +66,7 @@ def main():
             }
     #List of available keys for dynamically informing user of available keys
     listkeys = list(keys.keys())
-    #List of keys chosen by the user
+    #List of keys chosen by the user, empty until user input
     chosenkeys = []
 
     #Loop for getting the key 1 of each beep and validating user input
@@ -77,12 +81,12 @@ def main():
             key = input("Would you like the beeps to be in any additional keys? If yes, enter the the key name. Otherwise, enter [n]o? ").lower()
 
         #Add the entered key into chosenkeys[], end the loop if user enters [n]o, or prompt the user if the input is invalid
-        if(key in keys):
+        if(key in keys and key not in chosenkeys):
            chosenkeys.append(key)
         elif((len(chosenkeys) > 0)and(key == 'n' or key == 'no')):
             endLoop = True
         else:
-            print("Invalid input. Please enter one of the listed keys.")
+            print("Invalid input. Please enter one of the listed keys. Do not enter a key you already chose.")
 
     #Displays the information the user entered
     print("Your beeps will be " + str(ms) + " milliseconds long and will be in the key(s) of")
@@ -92,4 +96,5 @@ def main():
     print("\n" + "Beeping...")
     playSound(chosenkeys, keys, ms)
 
-main()
+if __name__ == '__main__':
+    main()
