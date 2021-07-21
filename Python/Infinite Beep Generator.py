@@ -4,17 +4,15 @@ Program by Donald DeWitt'''
 import winsound
 from random import *
 
-
 def randomBeep(ms):
     "Function for making a beep with a random frequency"
-    p=randint(200,800)
+    r = randint(200,800)
     winsound.Beep(int(p),int(ms))
     
 def keyBeep(keys, key, ms):
     "Function for making a beep within a specified musical key"
     r = randint(0,7)
     winsound.Beep(keys[key][r],int(ms))
-
 
 def playSound(chosenkeys, keys, ms):
     "Iterative function for making an infinite series of beeps using user input"
@@ -25,7 +23,6 @@ def playSound(chosenkeys, keys, ms):
                 randomBeep(ms)
             else:
                 keyBeep(keys, key, ms)
-
 
 def iterate(x):
     "Function for printing dictionary keys (to avoid unnesecary code duplication)"
@@ -64,6 +61,7 @@ def main():
             'pentatonic' :[277, 311, 370, 415, 466, 554, 622, 740],
             'random'     :[0]
             }
+    
     #List of available keys for dynamically informing user of available keys
     listkeys = list(keys.keys())
     #List of keys chosen by the user, empty until user input
