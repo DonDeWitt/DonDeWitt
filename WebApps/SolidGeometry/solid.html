@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+  <title>
+    Solid Geometry - Donald DeWitt
+  </title>
+  <meta charset="utf-8" />
+  <meta name="Author" content="Donald DeWitt" />
+  <meta name="generator" content="brackets" />
+   <link rel="shortcut icon" href=""/> 
+  <style>
+    a { text-decoration: none; }
+    a:hover { text-decoration: underline; }
+  </style>
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js"> 
+  </script>
+  <script src='solids.js'></script>
+</head>
+
+<body>
+    <h1>Solid Geometry
+    </h1>
+<table>
+  <tbody><tr>
+    <td>
+      <input type="radio" name="solid" id="solidCu" value="cube" onclick="$(&quot;#pic&quot;).attr(&quot;src&quot;,&quot;Cube.png&quot;);">
+      <label for="solidCu">Cube</label>
+    </td>
+    <td>
+      <label for="height">Height:</label>
+    </td>
+    <td>
+      <input type="text" id="height" name="height">
+    </td>
+    <td rowspan="5">
+      <textarea id="output" rows="8" cols="40">      </textarea>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <input type="radio" name="solid" id="solidSp" value="sphere">
+      <label for="solidSp">Sphere</label>
+    </td>
+    <td> <label for="radius">Radius:</label></td>
+    <td>
+      <input type="text" id="radius" name="radius">
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <input type="radio" name="solid" `="" id="solidCy" value="cylinder">
+      <label for="solidCy">Cylinder</label>
+    </td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>
+      <input type="checkbox" id="area" name="area">
+      <label for="area">Surface Area</label>
+    </td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>
+      <input type="checkbox" id="volume" name="volume">
+      <label for="volume">Volume</label>
+    </td>
+    <td>
+    </td>
+    <td>
+      <button onclick="solid_compute()">Compute!</button>
+    </td>
+  </tr>
+</tbody></table>
+     <footer style="border-top: 1px solid blue">
+ <a href="http://elvis.rowan.edu/~dewittd2/" 
+    title="Link to my home page">
+    D. DeWitt
+ </a>
+
+<span style="float: right;">
+<a href="http://validator.w3.org/check/referer">HTML5</a> /
+<a href="http://jigsaw.w3.org/css-validator/check/referer?profile=css3">
+    CSS3 </a>
+</span>
+</footer>
+</body>
+</html>
