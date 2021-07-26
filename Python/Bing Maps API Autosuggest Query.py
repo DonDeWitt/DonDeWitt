@@ -3,7 +3,7 @@
 import requests, json, mysql.connector
 
 
-API_KEY = "AgymWgd8VjBFWZGS59wjEi4yQ_PsE8iWTMDLGfsS2VRYHoMSDEuuCxSd-N0uVmAb"
+API_KEY = "CONFIDENTIAL"
 print("You can use this tool to search Bing Maps API's autosuggest feature by specifying a country and a keyword")
 
 #Get user input
